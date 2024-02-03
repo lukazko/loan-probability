@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Loan Eligibility Predictor</title>
+<!-- Link to Bootstrap CSS for styling -->
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+<style>
+    body {
+      background-color: #121212; /* Dark background */
+      color: #ffffff; /* Light text */
+    }
+    
+    .form-control, .form-check-label {
+      background-color: #333;
+      border-color: #444;
+      color: #ffffff;
+    }
+  
+    .btn-primary {
+      background-color: #f0ad4e;
+      border-color: #f0ad4e;
+    }
+  
+    .btn-primary:hover {
+      background-color: #ec971f;
+      border-color: #d58512;
+    }
+  
+    .modal-content {
+      background-color: #333;
+      color: #fff;
+    }
+  
+    .form-check-input {
+      border-color: #f0ad4e;
+    }
+  
+    .form-check-input:checked {
+      background-color: #f0ad4e;
+    }
+  
+    h2 {
+      color: #f0ad4e; /* Yellow color for headings */
+    }
+  
+
+  .form-control-sm.numeric-input {
+    background-color: #f7f7f7; /* Light background for numeric inputs */
+    border: 1px solid #ccc; /* Slightly darker border */
+  }
+
+  /* You can also add some padding and style adjustments if needed */
+  .form-control-sm.numeric-input::placeholder {
+    color: #999;
+  }
+ 
+  .narrow-input{
+    max-width: 200px; /* Adjust this value as needed */
+  }
+</style>
+
+</style>
+
+  </style>
+  
+
+
+</head>
+<body>
+<div class="container mt-5">
+    <h2>Loan Eligibility Predictor</h2>
+    <form id="loan-form">
+        <div class="form-group narrow-input">
+            <label for="age">Age:</label>
+            <input type="number" class="form-control form-control-sm"  id="age" placeholder="Enter age" required min="18" max="99">
+        </div>
+        <div class="form-group">
+            <label for="children">Children:</label>
+            <input type="number"class="form-control form-control-sm " id="children" placeholder="Enter number of children" required min="0" max="10">
+        </div>
+        <div class="form-group">
+            <label for="IQ">IQ:</label>
+            <input type="number" class="form-control form-control-sm " id="IQ" placeholder="Enter IQ" required min="80" max="200">
+        </div>
+        <div class="form-group">
+            <label>Gender:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="gender_f" value="1" required>
+                <label class="form-check-label" for="gender_f">Female</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="gender" id="gender_m" value="0">
+                <label class="form-check-label" for="gender_m">Male</label>
+            </div>
+        </div>
+        <!-- Marital Status Input -->
+        <div class="form-group">
+            <label>Marital Status:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="marstat" id="marstat_1" value="MarStat_1" required>
+                <label class="form-check-label" for="marstat_1">Divorced</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="marstat" id="marstat_2" value="MarStat_2" required>
+                <label class="form-check-label" for="marstat_1">Married / 
+                    in relationship </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="marstat" id="marstat_3" value="MarStat_3">
+                <label class="form-check-label" for="marstat_3">Single</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="marstat" id="marstat_4" value="MarStat_4">
+                <label class="form-check-label" for="marstat_4">Widow</label>
+            </div>
+        </div>
+
+        <!-- Housing Input -->
+        <div class="form-group">
+            <label>Housing:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="housing" id="housing_1" value="Housing_1" required>
+                <label class="form-check-label" for="housing_1">Lives with parents</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="housing" id="housing_2" value="Housing_2">
+                <label class="form-check-label" for="housing_2"> Registered at the town hall</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="housing" id="housing_3" value="Housing_3">
+                <label class="form-check-label" for="housing_2">Own house/apartment</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="housing" id="housing_4" value="Housing_4">
+                <label class="form-check-label" for="housing_4">Rent house/apartment</label>
+            </div>
+        </div>
+         <!-- education Input -->
+         <div class="form-group">
+            <label>Education:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="education" id="education_1" value="education_1" required>
+                <label class="form-check-label" for="education_1"> Elementary</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="education" id="education_2" value="education_2">
+                <label class="form-check-label" for="education_2">High school</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="education" id="education_3" value="education_2">
+                <label class="form-check-label" for="education_2">University</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="education" id="education_4" value="education_2">
+                <label class="form-check-label" for="education_2">PhD.</label>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <label>Income:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inc" id="inc_1" value="inc_1" required>
+                <label class="form-check-label" for="inc_1">None</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inc" id="inc_2" value="inc_2">
+                <label class="form-check-label" for="inc_2">0 - 15 000 Czk</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inc" id="inc_3" value="inc_3">
+                <label class="form-check-label" for="inc_3">15 000 - 30 000 Czk</label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="inc" id="inc_4" value="inc_4">
+                <label class="form-check-label" for="inc_4">+ 30 000 Czk</label>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Submit</button>
+    </form>
+    <div id="result" class="mt-3"></div>
+</div>
+
+<!-- Result Modal -->
+<div class="modal fade" id="resultModal" tabindex="-1" role="dialog" aria-labelledby="resultModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="resultModalLabel">Loan Eligibility Result</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p id="resultMessage"></p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<!-- Link to Bootstrap JS and Popper.js for interactivity -->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+
+<script>
+    // Function to compute logistic regression
+    function logisticRegression(age, gender, marstat, education, housing, incGr, children, IQ) {
+        // Replace the values below with the coefficients from the logistic regression output
+        const intercept = -3.953113;
+        const ageCoeff = -0.025289;
+        const genderFCoeff = 1.603121;
+            
+        const marstat_1 = 1.003217;
+        const marstat_2 = 0;
+        const marstat_3 = 0.177465;
+        const marstat_4 = 1.093052;
+
+        const housing_1 = 1.559819;
+        const housing_2 = 1.518677;
+        const housing_3 = 0;
+        const housing_4 = 0.088010;
+    
+        const educ_1 = 0.941741;
+        const educ_2 = 0.536126;
+        const educ_3 = -0.047020;
+        const educ_4 = 0;
+    
+    
+        const incGr_1 = 0.656499;
+        const incGr_2 = 0.473824;
+        const incGr_3 = 0.293464;
+        const incGr_4 = 0;
+    
+        const childrenCoeff = 0.074990;
+        const IQCoeff = -0.013022;
+      
+    
+        let score = intercept + (age * ageCoeff);
+        score += (gender === "1" ? genderFCoeff : 0); // Assuming gender "1" is for female in your model
+       
+        if (marstat === "MarStat_1") score += marstat_1;
+        else if (marstat === "MarStat_2") score += marstat_2;
+        else if (marstat === "MarStat_3") score += marstat_3;
+        else if (marstat === "MarStat_4") score += marstat_4;
+
+        if (housing === "Housing_1") score += housing_1;
+        else if (housing === "Housing_2") score += housing_2;
+        else if (housing === "Housing_3") score += housing_3;
+        else if (housing === "Housing_4") score += housing_4;
+
+        if (education === "education_1") score += educ_1;
+        else if (education === "education_2") score += educ_2;
+        else if (education === "education_3") score += educ_3;
+        else if (education === "education_4") score += educ_4;
+
+        if (incGr === "inc_1") score += incGr_1;
+        else if (incGr === "inc_2") score += incGr_2;
+        else if (incGr === "inc_3") score += incGr_3;
+        else if (incGr === "inc_4") score += incGr_4;
+
+        score += children * childrenCoeff;
+        score += IQ * IQCoeff;
+
+        // Calculate probability using the logistic function
+        const probability = 1 / (1 + Math.exp(-score));
+
+        return probability < 0.25 ? "Passed": "Denied"; // Assuming threshold is 0.25
+    }
+    
+        // Event listener for form submission
+    document.getElementById('loan-form').addEventListener('submit', function(event) {
+    event.preventDefault();
+
+    // Get the values from the form inputs
+    const age = parseFloat(document.getElementById('age').value);
+    const gender = document.querySelector('input[name="gender"]:checked').value;
+    const children = parseFloat(document.getElementById('children').value);
+    const marstat = document.querySelector('input[name="marstat"]:checked').value;
+    const housing = document.querySelector('input[name="housing"]:checked').value;
+    const education = document.querySelector('input[name="education"]:checked').value;
+    const incGr = document.querySelector('input[name="inc"]:checked').value;
+    const IQ = parseFloat(document.getElementById('IQ').value);
+
+    // Compute the result
+    const result = logisticRegression(age, gender, marstat, education, housing, incGr, children, IQ);
+
+    // Display the result
+    document.getElementById('resultMessage').textContent = `Loan Eligibility: ${result}`;
+        $('#resultModal').modal('show'); // Show the modal
+    });
+    
+</script>
+</body>
+</html>
